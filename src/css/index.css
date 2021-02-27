@@ -1,3 +1,5 @@
+@import 'tailwind.css';
+
 @font-face {
 	font-family: 'mononoki-bold';
 	src: url('../assets/fonts/mononoki-bold-webfont.woff2') format('woff2'),
@@ -31,18 +33,13 @@
 }
 
 .caret-input {
-	caret-color: #718096;
-}
-
-* {
-	margin: 0;
-	padding: 0;
+	caret-color: #71809600;
 }
 
 body {
 	@apply cursor-default;
 	@apply min-h-screen;
-	@apply bg-gray-900;
+	@apply bg-dracula-background;
 
 	font-family: 'mononoki', sans-serif;
 	-webkit-font-smoothing: antialiased;
@@ -52,10 +49,10 @@ body {
 ::-moz-selection {
 	/* Code for Firefox */
 	@apply text-white;
-	@apply bg-green-500;
+	@apply bg-dracula-purple;
 }
 
 ::selection {
 	@apply text-white;
-	@apply bg-green-500;
+	@apply bg-dracula-purple;
 }
