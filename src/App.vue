@@ -11,10 +11,10 @@
 		</button>
 	</div>
 
-	<div class="flex justify-center relative top-32 h-screen text-lg">
-		<main class="min-w-1/5 font-bold">
+	<div class="flex justify-center relative top-32 text-lg">
+		<main class="min-w-1/5">
 			<section id="search" class="mb-6 min-w-3/4">
-				<div id="title">
+				<div id="shell" class="font-bold">
 					<span class="text-dracula-red">echevarria</span>
 					<span class="text-dracula-purple"> ~/home</span>
 					<span class="text-dracula-green"> > </span>
