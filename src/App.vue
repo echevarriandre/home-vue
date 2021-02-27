@@ -11,7 +11,7 @@
 		</button>
 	</div>
 
-	<div class="flex justify-center items-center h-screen text-lg">
+	<div class="flex justify-center relative top-32 h-screen text-lg">
 		<main class="min-w-1/5 font-bold">
 			<section id="search" class="mb-6 min-w-3/4">
 				<div id="title">
@@ -49,7 +49,7 @@
 				</div>
 			</section>
 
-			<Links v-if="!user" />
+			<Links v-if="user" />
 			<Login v-else />
 		</main>
 	</div>
