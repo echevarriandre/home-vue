@@ -26,7 +26,8 @@ module.exports = {
       },
       outline: {
         // 'green-dashed': ['2px dashed ' + defaultTheme.colors.green[500], '3px']
-        'pink-dashed': ['2px dashed #50fa7b', '3px']
+        'green-dashed': ['2px dashed #50fa7b', '3px'],
+        'green-dashed-text': ['2px dashed #50fa7b', '2px']
       }
     }
   },

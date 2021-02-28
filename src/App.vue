@@ -1,6 +1,6 @@
 <template>
-	<div class="fixed right-0 m-5">
-		<button @click="edit" class="text-dracula-red hover:text-pink-400 transition duration-300 focus:outline-pink-dashed">
+	<div class="hidden md:block fixed right-0 m-5">
+		<button @click="edit" class="text-dracula-red hover:text-pink-400 transition duration-300 focus:outline-green-dashed" tabindex="-1">
 			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<path
 					fill-rule="evenodd"
@@ -13,7 +13,7 @@
 
 	<div class="flex justify-center relative top-32 text-lg">
 		<main class="min-w-1/5">
-			<section id="search" class="mb-6 min-w-3/4">
+			<section id="search" class="text-center mb-6 min-w-3/4">
 				<div id="shell" class="font-bold">
 					<span class="text-dracula-red">echevarria</span>
 					<span class="text-dracula-purple"> ~/home</span>
@@ -21,17 +21,18 @@
 					<span class="text-dracula-foreground">ddg</span>
 				</div>
 
-				<div class="mt-4 w-3/4 bg-dracula-currentline shadow flex justify-center rounded focus-within:outline-pink-dashed">
+				<div class="mt-4 md:w-3/4 bg-dracula-currentline shadow flex m-auto justify-center rounded focus-within:outline-green-dashed">
 					<input
 						type="text"
 						autocomplete="off"
 						class="caret-input w-5/6 p-2 font-bold text-dracula-foreground bg-transparent focus:outline-none"
 						v-model="search"
-						@keypress.enter="duckduckgo"
+						@keypress.enter="shell"
 					/>
 					<button
-						@click="duckduckgo"
-						class="group focus:outline-none flex justify-center items-center cursor-pointer w-1/6 p-2 bg-transparent hover:bg-dracula-pink duration-200 rounded text-dracula-foreground"
+						@click="shell"
+						tabindex="-1"
+						class="group focus:outline-none flex justify-center items-center cursor-pointer w-1/6 p-2 bg-transparent hover:bg-dracula-pink duration-200 rounded-sm text-dracula-foreground"
 					>
 						<svg
 							class="w-5 h-5 text-dracula-pink group-hover:text-dracula-foreground transition duration-300"
@@ -48,17 +49,23 @@
 					</button>
 				</div>
 			</section>
-
+			<!-- add transition when changing (each component needs one transition) -->
 			<Links v-if="user" />
-			<Login v-else />
+			<Login v-else @auth="(newUser) => (user = newUser)" />
 		</main>
 	</div>
+	<transition name="fade" mode="out-in">
+		<div v-show="secret" class="pointer-events-none duration-500 overflow-hidden fixed bottom-0 right-0">
+			<img src="@/assets/cow.png" alt="" />
+		</div>
+	</transition>
 </template>
 
 <script>
 //Heroicons https://heroicons.dev/
-import Links from './components/Links.vue';
-import Login from './components/Login.vue';
+import Links from './components/Links.vue'
+import Login from './components/Login.vue'
+import AuthService from './services/AuthService'
 
 export default {
 	name: 'App',
@@ -70,21 +77,39 @@ export default {
 		return {
 			search: '',
 			user: null,
-		};
+			secret: false,
+		}
 	},
 	beforeMount() {
-		const user = JSON.parse(localStorage.getItem('user'));
-		if (user) this.user = user;
+		const user = JSON.parse(sessionStorage.getItem('user'))
+		if (user) this.user = user
 	},
 	methods: {
-		duckduckgo() {
-			const updatedSearch = this.search.replace(' ', '+');
-			window.open(`https://duckduckgo.com/?q=${updatedSearch}`, '_self');
+		shell() {
+			switch (this.search) {
+				case 'logout':
+					if (this.user) {
+						AuthService.logout()
+						this.user = null
+					}
+					break
+				case 'porn':
+					this.secret = !this.secret
+					break
+				default:
+					window.open(`https://duckduckgo.com/?q=${this.search.replace(' ', '+')}`, '_self')
+			}
+
+			this.search = ''
 		},
 
 		edit() {
-			alert('todo');
+			alert('todo')
 		},
+
+		// auth(user) {
+		// 	this.user = user;
+		// },
 	},
-};
+}
 </script>
