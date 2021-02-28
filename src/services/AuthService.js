@@ -10,7 +10,7 @@ class AuthService {
 	}
 
 	logout() {
-		sessionStorage.removeItem('user')
+		localStorage.removeItem('user')
 	}
 }
 

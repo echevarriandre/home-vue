@@ -57,7 +57,7 @@ export default {
 				.then((response) => {
 					const user = response.data
 					this.error = false
-					sessionStorage.setItem('user', JSON.stringify(user))
+					localStorage.setItem('user', JSON.stringify(user))
 					this.$emit('auth', user)
 				})
 				.catch((error) => {
