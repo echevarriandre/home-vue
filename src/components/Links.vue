@@ -2,7 +2,7 @@
 	<section id="links-container" class="md:flex">
 		<template v-if="links">
 			<div v-for="(category, i) in categories" :key="i" className="bg-dracula-currentline shadow py-2 px-5 m-3 h-full rounded">
-				<div class="font-bold">
+				<div>
 					<span className="text-dracula-pink">~/{{ category }}</span>
 					<span className="text-green-500"> ></span>
 				</div>
@@ -10,7 +10,7 @@
 					<div v-for="link in links[category]" :key="link.id">
 						<a
 							:href="link.url"
-							class="text-gray-600 font-bold focus:outline-green-dashed-text hover:text-dracula-red transition duration-200 cursor-pointer"
+							class="text-gray-600 focus:outline-green-dashed-text hover:text-dracula-red transition duration-200 cursor-pointer"
 						>
 							{{ link.name }}
 						</a>

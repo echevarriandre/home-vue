@@ -38,7 +38,7 @@ body {
 	@apply min-h-screen;
 	@apply bg-dracula-background;
 
-	font-family: 'mononoki', sans-serif;
+	font-family: 'mononoki-bold', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }

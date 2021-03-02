@@ -7,7 +7,7 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 font-bold text-dracula-foreground bg-dracula-currentline rounded focus:outline-green-dashed mb-3"
+				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-green-dashed mb-3"
 			/>
 			<input
 				name="password"
@@ -15,7 +15,7 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 font-bold text-dracula-foreground bg-dracula-currentline rounded focus:outline-green-dashed"
+				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-green-dashed"
 			/>
 
 			<button

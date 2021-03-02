@@ -14,7 +14,7 @@
 	<div class="flex justify-center relative top-32 text-lg">
 		<main class="min-w-1/5">
 			<section id="search" class="text-center mb-6 min-w-3/4">
-				<div id="shell" class="font-bold">
+				<div id="shell">
 					<span class="text-dracula-red">echevarria</span>
 					<span class="text-dracula-purple"> ~/home</span>
 					<span class="text-dracula-green"> > </span>
@@ -25,7 +25,7 @@
 					<input
 						type="text"
 						autocomplete="off"
-						class="caret-input w-5/6 p-2 font-bold text-dracula-foreground bg-transparent focus:outline-none"
+						class="caret-input w-5/6 p-2 text-dracula-foreground bg-transparent focus:outline-none"
 						v-model="search"
 						@keypress.enter="shell"
 					/>
