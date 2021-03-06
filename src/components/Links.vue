@@ -72,17 +72,33 @@ export default {
 	methods: {
 		handleLinks(rawLinks) {
 			let aux = {}
-			for (let i = 0; i < rawLinks.length; i++) {
-				const link = rawLinks[i]
+			rawLinks.forEach((link) => {
+				// initialize categories
 				if (aux[link.type] === undefined) {
 					this.categories.push(link.type)
 					aux[link.type] = []
 				}
 
 				aux[link.type].push(link)
-			}
+			})
 
-			this.links = aux
+			const sortedLinks = this.sort(aux)
+
+			this.links = sortedLinks
+		},
+		sort(links) {
+			for (const category of this.categories)
+				links[category].sort((a, b) => {
+					let firstName = a.name.toUpperCase()
+					let secondName = b.name.toUpperCase()
+
+					if (firstName < secondName) return -1
+					if (firstName > secondName) return 1
+
+					return 0
+				})
+
+			return links
 		},
 	},
 }
