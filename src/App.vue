@@ -55,8 +55,8 @@
 		</main>
 	</div>
 	<transition name="fade" mode="out-in">
-		<div v-show="secret" class="pointer-events-none duration-500 overflow-hidden fixed bottom-0 right-0">
-			<img src="@/assets/cow.png" alt="" />
+		<div v-show="secret" @click="this.secret = false" class="top-0 h-screen w-screen duration-500 overflow-hidden fixed">
+			<img src="@/assets/cow.png" alt="" class="right-0 absolute" />
 		</div>
 	</transition>
 	<All v-if="showModal" @close="toggleAll" />
