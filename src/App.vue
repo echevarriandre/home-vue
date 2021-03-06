@@ -1,6 +1,6 @@
 <template>
-	<div class="hidden md:block fixed right-0 m-5">
-		<button @click="edit" class="text-dracula-red hover:text-pink-400 transition duration-300 focus:outline-green-dashed" tabindex="-1">
+	<div v-if="user" class="z-10 fixed right-0 m-5">
+		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-green-dashed" tabindex="-1">
 			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<path
 					fill-rule="evenodd"
@@ -59,12 +59,14 @@
 			<img src="@/assets/cow.png" alt="" />
 		</div>
 	</transition>
+	<All v-if="showModal" @close="toggleAll" />
 </template>
 
 <script>
 //Heroicons https://heroicons.dev/
-import Links from './components/Links.vue'
-import Login from './components/Login.vue'
+import Links from './components/Links'
+import Login from './components/Login'
+import All from './components/All'
 import AuthService from './services/AuthService'
 
 export default {
@@ -72,12 +74,14 @@ export default {
 	components: {
 		Links,
 		Login,
+		All,
 	},
 	data() {
 		return {
 			search: '',
 			user: null,
 			secret: false,
+			showModal: false,
 		}
 	},
 	beforeMount() {
@@ -92,19 +96,20 @@ export default {
 						AuthService.logout()
 						this.user = null
 					}
+					this.search = ''
 					break
 				case 'porn':
 					this.secret = !this.secret
+					this.search = ''
 					break
 				default:
 					window.open(`https://duckduckgo.com/?q=${this.search.replace(' ', '+')}`, '_self')
 			}
-
-			this.search = ''
 		},
 
-		edit() {
-			alert('todo')
+		toggleAll() {
+			this.showModal = !this.showModal
+			document.body.classList.toggle('modal-open')
 		},
 
 		// auth(user) {
@@ -113,3 +118,9 @@ export default {
 	},
 }
 </script>
+
+<style>
+.modal-open {
+	overflow: hidden;
+}
+</style>

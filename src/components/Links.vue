@@ -63,7 +63,7 @@ export default {
 			.then((response) => {
 				setTimeout(() => {
 					this.handleLinks(response.data)
-				}, 500)
+				}, 250)
 			})
 			.catch((error) => {
 				console.log(error)

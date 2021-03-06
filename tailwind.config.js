@@ -24,6 +24,13 @@ module.exports = {
         '3/4': '75%',
         'full': '100%',
       },
+      maxHeight: {
+        '0': '0',
+        '1/4': '25%',
+        '1/2': '50%',
+        '3/4': '75%',
+        'full': '100%',
+      },
       outline: {
         // 'green-dashed': ['2px dashed ' + defaultTheme.colors.green[500], '3px']
         'green-dashed': ['2px dashed #50fa7b', '3px'],
@@ -34,5 +41,7 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')
+  ],
 }

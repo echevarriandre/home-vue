@@ -60,8 +60,7 @@ export default {
 					localStorage.setItem('user', JSON.stringify(user))
 					this.$emit('auth', user)
 				})
-				.catch((error) => {
-					console.log('levaste na boca: ', error)
+				.catch(() => {
 					this.error = true
 				})
 		},
