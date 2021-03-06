@@ -35,7 +35,7 @@
 									<a
 										:href="link.url"
 										target="_blank"
-										class="whitespace-no-wrap text-dracula-cyan hover:underline focus:outline-green-dashed"
+										class="whitespace-no-wrap text-dracula-cyan hover:underline focus:outline-yellow-dashed"
 										>{{ link.url }}</a
 									>
 								</td>
@@ -45,7 +45,7 @@
 									</span>
 								</td>
 								<td class="mx-5 my-5 text-center">
-									<button class="text-xl focus:outline-green-dashed inline-block mx-2 my-1 text-dracula-orange leading-tight">
+									<button class="text-xl focus:outline-yellow-dashed inline-block mx-2 my-1 text-dracula-orange leading-tight">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -63,7 +63,7 @@
 											</g>
 										</svg>
 									</button>
-									<button class="text-xl focus:outline-green-dashed inline-table-cell mx-2 my-1 text-dracula-red leading-tight">
+									<button class="text-xl focus:outline-yellow-dashed inline-table-cell mx-2 my-1 text-dracula-red leading-tight">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											xmlns:xlink="http://www.w3.org/1999/xlink"

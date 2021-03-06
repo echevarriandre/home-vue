@@ -7,7 +7,7 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-green-dashed mb-3"
+				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-yellow-dashed mb-3"
 			/>
 			<input
 				name="password"
@@ -15,13 +15,13 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-green-dashed"
+				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-yellow-dashed"
 			/>
 
 			<button
 				@click="login"
 				:class="{ 'bg-dracula-red': error }"
-				class="group m-auto flex justify-center shadow mt-7 focus:outline-green-dashed bg-dracula-currentline hover:bg-dracula-pink transition duration-300 w-3/4 text-white rounded p-2"
+				class="group m-auto flex justify-center shadow mt-7 focus:outline-yellow-dashed bg-dracula-currentline hover:bg-dracula-pink transition duration-300 w-3/4 text-white rounded p-2"
 			>
 				<svg
 					class="w-5 h-5 group-hover:text-dracula-foreground transition duration-300"

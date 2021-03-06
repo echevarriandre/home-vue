@@ -10,7 +10,7 @@
 					<div v-for="link in links[category]" :key="link.id">
 						<a
 							:href="link.url"
-							class="text-gray-600 focus:outline-green-dashed-text hover:text-dracula-red transition duration-200 cursor-pointer"
+							class="text-gray-600 focus:outline-yellow-dashed-text hover:text-dracula-red transition duration-200 cursor-pointer"
 						>
 							{{ link.name }}
 						</a>

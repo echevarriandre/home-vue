@@ -1,6 +1,6 @@
 <template>
 	<div v-if="user" class="z-10 fixed right-0 m-5">
-		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-green-dashed" tabindex="-1">
+		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-yellow-dashed" tabindex="-1">
 			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<path
 					fill-rule="evenodd"
@@ -22,7 +22,7 @@
 					<span class="text-dracula-foreground">ddg</span>
 				</div>
 
-				<div class="mt-4 md:w-3/4 bg-dracula-currentline shadow flex m-auto justify-center rounded focus-within:outline-green-dashed">
+				<div class="mt-4 md:w-3/4 bg-dracula-currentline shadow flex m-auto justify-center rounded focus-within:outline-yellow-dashed">
 					<input
 						type="text"
 						autocomplete="off"

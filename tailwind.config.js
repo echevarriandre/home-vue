@@ -32,9 +32,9 @@ module.exports = {
         'full': '100%',
       },
       outline: {
-        // 'green-dashed': ['2px dashed ' + defaultTheme.colors.green[500], '3px']
-        'green-dashed': ['2px dashed #50fa7b', '3px'],
-        'green-dashed-text': ['2px dashed #50fa7b', '2px']
+        // 'yellow-dashed': ['2px dashed ' + defaultTheme.colors.green[500], '3px']
+        'yellow-dashed': ['2px dashed #f1fa8c', '3px'],
+        'yellow-dashed-text': ['2px dashed #f1fa8c', '2px']
       }
     }
   },
