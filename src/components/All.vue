@@ -1,7 +1,7 @@
 <template>
-	<div @click.self="close" class="fixed h-screen w-screen top-0 bg-black bg-opacity-50 flex justify-center items-center">
+	<div @click.self="close" class="fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start">
 		<div
-			class="z-10 w-full md:w-auto m-2 max-h-3/4 bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink"
+			class="z-10 w-full md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink"
 		>
 			<div class="rounded flex">
 				<div class="w-full mb-2">
@@ -45,7 +45,7 @@
 									</span>
 								</td>
 								<td class="mx-5 my-5 text-center">
-									<button class="text-xl focus:outline-yellow-dashed inline-block mx-2 my-1 text-dracula-orange leading-tight">
+									<button class="text-xl focus:outline-yellow-dashed hover:text-dracula-yellow transition duration-300 inline-block mx-2 my-1 text-dracula-purple leading-tight">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -63,7 +63,7 @@
 											</g>
 										</svg>
 									</button>
-									<button class="text-xl focus:outline-yellow-dashed inline-table-cell mx-2 my-1 text-dracula-red leading-tight">
+									<button class="text-xl focus:outline-yellow-dashed hover:text-dracula-yellow transition duration-300 inline-table-cell mx-2 my-1 text-dracula-red leading-tight">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -121,7 +121,7 @@ export default {
 	methods: {
 		close() {
 			this.$emit('close')
-		}
+		},
 	},
 }
 </script>

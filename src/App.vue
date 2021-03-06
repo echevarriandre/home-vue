@@ -5,12 +5,21 @@
 			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-yellow-dashed"
 			tabindex="-1"
 		>
-			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-				<path
-					fill-rule="evenodd"
-					d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-					clip-rule="evenodd"
-				></path>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				aria-hidden="true"
+				class="w-6 h-6"
+				viewBox="0 0 20 20"
+			>
+				<g fill="none">
+					<path d="M5 4a1 1 0 0 0-2 0v7.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-1.268a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
+					<path d="M11 4a1 1 0 1 0-2 0v1.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0V8.732a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
+					<path
+						d="M16 3a1 1 0 0 1 1 1v7.268a2 2 0 0 1 0 3.464V16a1 1 0 1 1-2 0v-1.268a2 2 0 0 1 0-3.464V4a1 1 0 0 1 1-1z"
+						fill="currentColor"
+					></path>
+				</g>
 			</svg>
 		</button>
 	</div>
@@ -26,7 +35,10 @@
 					<span class="text-dracula-foreground">ddg</span>
 				</div>
 
-				<div class="mt-4 md:w-3/4 bg-dracula-currentline shadow flex m-auto justify-center rounded focus-within:outline-yellow-dashed">
+				<div
+					:class="{ 'bg-dracula-red': emptyError }"
+					class="mt-4 w-full sm:w-3/4 bg-dracula-currentline transition duration-300 shadow flex m-auto justify-center rounded focus-within:outline-yellow-dashed"
+				>
 					<input
 						type="text"
 						autocomplete="off"
@@ -37,12 +49,11 @@
 					<button
 						@click="shell"
 						tabindex="-1"
-						class="group focus:outline-none flex justify-center items-center cursor-pointer w-1/6 p-2 bg-transparent hover:bg-dracula-pink duration-200 rounded-sm text-dracula-foreground"
+						class="group focus:outline-none flex justify-center items-center cursor-pointer w-1/6 p-2 bg-transparent duration-200 rounded-sm text-dracula-foreground"
 					>
 						<svg
-							class="w-5 h-5 text-dracula-pink group-hover:text-dracula-foreground transition duration-300"
+							class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-purple transition duration-200"
 							fill="currentColor"
-							viewBox="0 0 20 20"
 							xmlns="http://www.w3.org/2000/svg"
 						>
 							<path
@@ -65,7 +76,8 @@
 			<img src="@/assets/cow.png" alt="" class="right-0 absolute" />
 		</div>
 	</transition>
-	<All v-if="showModal" @close="toggleAll" />
+
+	<All v-show="showModal" @close="toggleAll" />
 </template>
 
 <script>
@@ -88,6 +100,7 @@ export default {
 			user: null,
 			secret: false,
 			showModal: false,
+			emptyError: false,
 		}
 	},
 	beforeMount() {
@@ -96,6 +109,14 @@ export default {
 	},
 	methods: {
 		shell() {
+			if (this.search.length <= 0) {
+				this.emptyError = true
+				setTimeout(() => {
+					this.emptyError = false
+				}, 1000)
+				return
+			}
+
 			switch (this.search) {
 				case 'logout':
 					if (this.user) {
