@@ -7,7 +7,7 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-yellow-dashed mb-3"
+				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-pink-dashed mb-3"
 			/>
 			<input
 				name="password"
@@ -15,17 +15,16 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-yellow-dashed"
+				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-pink-dashed"
 			/>
 
 			<button
 				@click="login"
 				:class="{ 'bg-dracula-red': error }"
-				class="group m-auto flex justify-center shadow mt-7 focus:outline-yellow-dashed bg-dracula-currentline hover:bg-dracula-pink transition duration-300 w-3/4 text-white rounded p-2"
+				class="group m-auto flex justify-center shadow mt-7 focus:outline-pink-dashed bg-dracula-currentline hover:bg-dracula-yellow transition duration-300 w-3/4 text-white rounded p-2"
 			>
 				<svg
-					class="w-5 h-5 group-hover:text-dracula-foreground transition duration-300"
-					:class="{ 'text-dracula-foreground': error, 'text-dracula-pink': !error }"
+					class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-currentline transition duration-300"
 					fill="currentColor"
 					viewBox="0 0 20 20"
 					xmlns="http://www.w3.org/2000/svg"

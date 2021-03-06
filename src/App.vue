@@ -2,7 +2,7 @@
 	<div v-if="user" class="z-10 fixed right-0 m-5">
 		<button
 			@click="toggleAll"
-			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-yellow-dashed"
+			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed"
 			tabindex="-1"
 		>
 			<svg
@@ -37,7 +37,7 @@
 
 				<div
 					:class="{ 'bg-dracula-red': emptyError }"
-					class="mt-4 w-full sm:w-3/4 bg-dracula-currentline transition duration-300 shadow flex m-auto justify-center rounded focus-within:outline-yellow-dashed"
+					class="mt-4 w-full sm:w-3/4 bg-dracula-currentline transition duration-300 shadow flex m-auto justify-center rounded focus-within:outline-pink-dashed"
 				>
 					<input
 						type="text"
@@ -49,10 +49,10 @@
 					<button
 						@click="shell"
 						tabindex="-1"
-						class="group focus:outline-none flex justify-center items-center cursor-pointer w-1/6 p-2 bg-transparent duration-200 rounded-sm text-dracula-foreground"
+						class="group focus:outline-none flex justify-center items-center cursor-pointer w-1/6 p-2 bg-transparent duration-300 rounded-sm text-dracula-foreground"
 					>
 						<svg
-							class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-purple transition duration-200"
+							class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-yellow transition duration-300"
 							fill="currentColor"
 							xmlns="http://www.w3.org/2000/svg"
 						>
@@ -77,14 +77,14 @@
 		</div>
 	</transition>
 
-	<All v-show="showModal" @close="toggleAll" />
+	<Settings v-show="showModal" @close="toggleAll" />
 </template>
 
 <script>
 //Heroicons https://heroicons.dev/
 import Links from './components/Links'
 import Login from './components/Login'
-import All from './components/All'
+import Settings from './components/settings/Settings'
 import AuthService from './services/AuthService'
 
 export default {
@@ -92,7 +92,7 @@ export default {
 	components: {
 		Links,
 		Login,
-		All,
+		Settings,
 	},
 	data() {
 		return {

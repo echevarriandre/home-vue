@@ -46,12 +46,12 @@ body {
 ::-moz-selection {
 	/* Code for Firefox */
 	@apply text-white;
-	@apply bg-dracula-purple;
+	@apply bg-dracula-red;
 }
 
 ::selection {
 	@apply text-white;
-	@apply bg-dracula-purple;
+	@apply bg-dracula-red;
 }
 
 .easter-enter-from,
