@@ -50,27 +50,37 @@
 
 <script>
 import LinksService from '../services/LinksService'
+import { sortPropertyAlphabetically } from '../helpers/helpers'
 
 export default {
+	props: {
+		needsToUpdate: Boolean,
+	},
+	emits: ['update:needsToUpdate'],
 	data() {
 		return {
-			links: null,
 			categories: [],
+			links: null,
 		}
 	},
 	mounted() {
-		LinksService.all()
-			.then((response) => {
-				setTimeout(() => {
-					this.handleLinks(response.data)
-				}, 250)
-			})
-			.catch((error) => {
-				console.log(error)
-			})
+		this.get()
 	},
 	methods: {
+		get() {
+			LinksService.all()
+				.then((response) => {
+					setTimeout(() => {
+						this.$root.links = sortPropertyAlphabetically(response.data, 'name')
+						this.handleLinks(response.data)
+					}, 250)
+				})
+				.catch((error) => {
+					console.log(error)
+				})
+		},
 		handleLinks(rawLinks) {
+			this.categories = []
 			let aux = {}
 			rawLinks.forEach((link) => {
 				// initialize categories
@@ -88,17 +98,18 @@ export default {
 		},
 		sort(links) {
 			for (const category of this.categories)
-				links[category].sort((a, b) => {
-					let firstName = a.name.toUpperCase()
-					let secondName = b.name.toUpperCase()
-
-					if (firstName < secondName) return -1
-					if (firstName > secondName) return 1
-
-					return 0
-				})
+				links[category] = sortPropertyAlphabetically(links[category], 'name')
 
 			return links
+		},
+	},
+	watch: {
+		needsToUpdate(newVal) {
+			if (newVal == true) {
+				this.get()
+				this.$emit('update:needsToUpdate', false)
+				this.handleLinks(this.$root.links)
+			}
 		},
 	},
 }

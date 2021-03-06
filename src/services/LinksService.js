@@ -1,5 +1,3 @@
-// import axios from 'axios'
-
 import { api } from '../interceptor'
 import { config } from '../config'
 
@@ -14,8 +12,12 @@ class LinkService {
 		return api.get(API_LINKS_URL + id)
 	}
 
+	create(data) {
+		return api.post(API_LINKS_URL, data)
+	}
+
 	update(id, data) {
-		return api.post(API_LINKS_URL + id, data)
+		return api.put(API_LINKS_URL + id, data)
 	}
 
 	delete(id) {

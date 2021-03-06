@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full mb-2">
-		<table v-if="links.length > 0" class="min-w-full leading-normal">
+		<table v-if="$root.links.length > 0" class="min-w-full leading-normal">
 			<thead class="sticky top-0 bg-dracula-currentline text-dracula-foreground">
 				<tr>
 					<th class="px-5 py-3 text-center text-xs uppercase tracking-wider">
@@ -18,7 +18,16 @@
 				</tr>
 			</thead>
 			<tbody class="text-dracula-comment">
-				<tr v-for="link in links" :key="link.id">
+				<tr
+					v-for="link in $root.links"
+					:key="link.id"
+					:ref="
+						(el) => {
+							if (el) tableRows[link.id] = el
+						}
+					"
+					class="transition duration-300"
+				>
 					<td class="px-5 py-1 text-sm">
 						<div class="flex items-center">
 							<span class="whitespace-no-wrap">
@@ -30,7 +39,7 @@
 						<a
 							:href="link.url"
 							target="_blank"
-							class="whitespace-no-wrap hover:text-dracula-yellow transition duration-200 text-dracula-cyan focus:outline-pink-dashed"
+							class="whitespace-no-wrap hover:text-dracula-yellow transition duration-300 text-dracula-cyan focus:outline-pink-dashed"
 							>{{ link.url }}</a
 						>
 					</td>
@@ -41,6 +50,7 @@
 					</td>
 					<td class="mx-5 my-5 text-center">
 						<button
+							@click="edit(link)"
 							class="text-xl focus:outline-pink-dashed hover:text-dracula-yellow transition duration-300 inline-block mx-1 my-1 text-dracula-comment"
 						>
 							<svg
@@ -58,6 +68,7 @@
 							</svg>
 						</button>
 						<button
+							@click="remove(link)"
 							class="text-xl focus:outline-pink-dashed hover:text-dracula-yellow transition duration-300 inline-table-cell mx-1 my-1 text-dracula-red"
 						>
 							<svg
@@ -86,10 +97,34 @@
 </template>
 
 <script>
+import LinksService from '../../services/LinksService'
 export default {
-	props: {
-		links: Array
-	}
+	emits: ['refresh', 'edit'],
+	data() {
+		return {
+			tableRows: {},
+		}
+	},
+	methods: {
+		edit(link) {
+			this.$emit('edit', link)
+		},
+		remove(link) {
+			LinksService.delete(link.id)
+				.then(() => {
+					this.$emit('refresh')
+				})
+				.catch(() => {
+					this.tableRows[link.id].classList.add('bg-dracula-red', 'text-dracula-foreground')
+					setTimeout(() => {
+						this.tableRows[link.id].classList.remove('bg-dracula-red', 'text-dracula-foreground')
+					}, 1000)
+				})
+		},
+		setTableRows(id, event) {
+			this.tableRows[id] = event
+		},
+	},
 }
 </script>
 

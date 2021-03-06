@@ -16,6 +16,9 @@ module.exports = {
         'dracula-red': '#ff5555',
         'dracula-yellow': '#f1fa8c',
       },
+      width: {
+        '500': '500px',
+      },
       minWidth: {
         '0': '0',
         '1/5': '20%',

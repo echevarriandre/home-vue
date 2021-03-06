@@ -7,6 +7,7 @@
 				<div class="relative top-0 py-2 px-4 text-right flex justify-between">
 					<div class="flex space-x-2">
 						<button
+							v-if="!editing && !creating"
 							@click="close"
 							class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed flex justify-center"
 						>
@@ -14,7 +15,7 @@
 								xmlns="http://www.w3.org/2000/svg"
 								xmlns:xlink="http://www.w3.org/1999/xlink"
 								aria-hidden="true"
-								class="w-4 h-4"
+								class="w-5 h-5"
 								viewBox="0 0 20 20"
 							>
 								<path
@@ -23,7 +24,34 @@
 								></path>
 							</svg>
 						</button>
-						<button @click="refresh" class="text-dracula-comment hover:text-dracula-yellow transition duration-300 focus-within:outline-pink-dashed">
+						<button
+							v-else
+							@click="back"
+							class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed flex justify-center"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								xmlns:xlink="http://www.w3.org/1999/xlink"
+								aria-hidden="true"
+								class="w-5 h-5"
+								preserveAspectRatio="xMidYMid meet"
+								viewBox="0 0 20 20"
+							>
+								<g fill="none">
+									<path
+										fill-rule="evenodd"
+										clip-rule="evenodd"
+										d="M7.707 14.707a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 0-1.414l4-4a1 1 0 0 1 1.414 1.414L5.414 9H17a1 1 0 1 1 0 2H5.414l2.293 2.293a1 1 0 0 1 0 1.414z"
+										fill="currentColor"
+									></path>
+								</g>
+							</svg>
+						</button>
+						<button
+							v-if="!editing && !creating"
+							@click="refresh"
+							class="text-dracula-comment hover:text-dracula-yellow transition duration-300 focus-within:outline-pink-dashed"
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -43,6 +71,7 @@
 						</button>
 					</div>
 					<button
+						v-if="!editing && !creating"
 						@click="creating = true"
 						class="text-dracula-orange hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed flex justify-center"
 					>
@@ -50,24 +79,26 @@
 							xmlns="http://www.w3.org/2000/svg"
 							xmlns:xlink="http://www.w3.org/1999/xlink"
 							aria-hidden="true"
-							class="w-4 h-4"
+							class="h-5 w-5"
 							viewBox="0 0 20 20"
 						>
 							<g fill="none">
 								<path
 									fill-rule="evenodd"
 									clip-rule="evenodd"
-									d="M10 18a8 8 0 1 0 0-16a8 8 0 0 0 0 16zm1-11a1 1 0 1 0-2 0v2H7a1 1 0 1 0 0 2h2v2a1 1 0 1 0 2 0v-2h2a1 1 0 1 0 0-2h-2V7z"
+									d="M10 5a1 1 0 0 1 1 1v3h3a1 1 0 1 1 0 2h-3v3a1 1 0 1 1-2 0v-3H6a1 1 0 1 1 0-2h3V6a1 1 0 0 1 1-1z"
 									fill="currentColor"
 								></path>
 							</g>
 						</svg>
 					</button>
 				</div>
-				<transition name="easter">
-					<LinksList v-if="!editing && !creating" :links="links" @editing="edit" />
-					<LinkEdit v-else :link="selectedLink" />
-				</transition>
+				<section class="flex justify-center flex-col">
+					<transition name="fade" mode="out-in">
+						<LinkEdit v-if="editing || creating" :link="selectedLink" @complete="back" />
+						<LinksList v-else @edit="edit" @refresh="refresh" />
+					</transition>
+				</section>
 			</div>
 		</div>
 	</div>
@@ -77,38 +108,34 @@
 import LinksList from './LinksList'
 import LinksService from '../../services/LinksService'
 import LinkEdit from './LinkEdit'
+import { sortPropertyAlphabetically } from '../../helpers/helpers'
 
 export default {
 	components: {
 		LinksList,
 		LinkEdit,
 	},
+	emits: ['refresh', 'close'],
 	data() {
 		return {
 			editing: false,
 			creating: false,
 			selectedLink: {},
-			links: [],
 		}
 	},
 	mounted() {
-		LinksService.all()
-			.then((response) => {
-				this.links = response.data.sort((a, b) => {
-					let firstName = a.name.toUpperCase()
-					let secondName = b.name.toUpperCase()
-
-					if (firstName < secondName) return -1
-					if (firstName > secondName) return 1
-
-					return 0
-				})
-			})
-			.catch((error) => {
-				console.log(error)
-			})
+		this.get()
 	},
 	methods: {
+		get() {
+			LinksService.all()
+				.then((response) => {
+					this.$root.links = sortPropertyAlphabetically(response.data, 'name')
+				})
+				.catch((error) => {
+					console.log(error)
+				})
+		},
 		close() {
 			this.creating = false
 			this.editing = false
@@ -119,7 +146,17 @@ export default {
 		edit(link) {
 			this.editing = true
 			this.selectedLink = link
-		}
+		},
+		back() {
+			this.editing = false
+			this.creating = false
+			this.selectedLink = {}
+			this.refresh()
+		},
+		refresh() {
+			this.get()
+			this.$emit('refresh')
+		},
 	},
 }
 </script>

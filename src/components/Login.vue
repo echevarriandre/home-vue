@@ -7,7 +7,7 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-pink-dashed mb-3"
+				class="text-center shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-pink-dashed mb-3"
 			/>
 			<input
 				name="password"
@@ -15,26 +15,30 @@
 				autocomplete="off"
 				type="password"
 				:class="{ 'bg-dracula-red transition duration-300': error }"
-				class="shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-pink-dashed"
+				class="text-center shadow caret-input w-3/4 p-2 text-dracula-foreground bg-dracula-currentline rounded focus:outline-pink-dashed"
 			/>
 
 			<button
 				@click="login"
 				:class="{ 'bg-dracula-red': error }"
-				class="group m-auto flex justify-center shadow mt-7 focus:outline-pink-dashed bg-dracula-currentline hover:bg-dracula-yellow transition duration-300 w-3/4 text-white rounded p-2"
+				class="group m-auto flex justify-center shadow mt-7 focus:outline-pink-dashed bg-dracula-currentline hover:bg-dracula-yellow transition duration-300 w-3/4 text-dracula-foreground rounded p-2"
 			>
 				<svg
-					class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-currentline transition duration-300"
-					fill="currentColor"
-					viewBox="0 0 20 20"
-					xmlns="http://www.w3.org/2000/svg"
-				>
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				aria-hidden="true"
+				class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-currentline transition duration-300"
+				viewBox="0 0 20 20"
+			>
+				<g fill="none">
 					<path
 						fill-rule="evenodd"
-						d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
 						clip-rule="evenodd"
+						d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0z"
+						fill="currentColor"
 					></path>
-				</svg>
+				</g>
+			</svg>
 			</button>
 		</form>
 	</section>

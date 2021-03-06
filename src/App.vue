@@ -1,17 +1,7 @@
 <template>
 	<div v-if="user" class="z-10 fixed right-0 m-5">
-		<button
-			@click="toggleAll"
-			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed"
-			tabindex="-1"
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink"
-				aria-hidden="true"
-				class="w-6 h-6"
-				viewBox="0 0 20 20"
-			>
+		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed" tabindex="-1">
+			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" class="w-6 h-6" viewBox="0 0 20 20">
 				<g fill="none">
 					<path d="M5 4a1 1 0 0 0-2 0v7.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-1.268a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
 					<path d="M11 4a1 1 0 1 0-2 0v1.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0V8.732a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
@@ -37,7 +27,7 @@
 
 				<div
 					:class="{ 'bg-dracula-red': emptyError }"
-					class="mt-4 w-full sm:w-3/4 bg-dracula-currentline transition duration-300 shadow flex m-auto justify-center rounded focus-within:outline-pink-dashed"
+					class="mt-4 w-full sm:w-500 bg-dracula-currentline transition duration-300 shadow flex m-auto justify-center rounded focus-within:outline-pink-dashed"
 				>
 					<input
 						type="text"
@@ -66,7 +56,7 @@
 				</div>
 			</section>
 			<transition name="fade" mode="out-in">
-				<Links v-if="user" />
+				<Links v-if="user" v-model:needsToUpdate="needsToUpdate" />
 				<Login v-else @auth="(newUser) => (user = newUser)" />
 			</transition>
 		</main>
@@ -77,7 +67,7 @@
 		</div>
 	</transition>
 
-	<Settings v-show="showModal" @close="toggleAll" />
+	<Settings v-show="showModal" @close="toggleAll" @refresh="needsToUpdate = true" />
 </template>
 
 <script>
@@ -98,9 +88,11 @@ export default {
 		return {
 			search: '',
 			user: null,
+			links: [],
 			secret: false,
 			showModal: false,
 			emptyError: false,
+			needsToUpdate: false,
 		}
 	},
 	beforeMount() {
@@ -122,6 +114,10 @@ export default {
 					if (this.user) {
 						AuthService.logout()
 						this.user = null
+						this.secret = false
+						this.showModal = false
+						this.emptyError = false
+						this.links = []
 					}
 					this.search = ''
 					break
@@ -138,10 +134,6 @@ export default {
 			this.showModal = !this.showModal
 			document.body.classList.toggle('modal-open')
 		},
-
-		// auth(user) {
-		// 	this.user = user;
-		// },
 	},
 }
 </script>
