@@ -1,6 +1,10 @@
 <template>
 	<div v-if="user" class="z-10 fixed right-0 m-5">
-		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-yellow-dashed" tabindex="-1">
+		<button
+			@click="toggleAll"
+			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-yellow-dashed"
+			tabindex="-1"
+		>
 			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
 				<path
 					fill-rule="evenodd"
@@ -50,12 +54,13 @@
 					</button>
 				</div>
 			</section>
-			<!-- add transition when changing (each component needs one transition) -->
-			<Links v-if="user" />
-			<Login v-else @auth="(newUser) => (user = newUser)" />
+			<transition name="fade" mode="out-in">
+				<Links v-if="user" />
+				<Login v-else @auth="(newUser) => (user = newUser)" />
+			</transition>
 		</main>
 	</div>
-	<transition name="fade" mode="out-in">
+	<transition name="easter" mode="out-in">
 		<div v-show="secret" @click="this.secret = false" class="top-0 h-screen w-screen duration-500 overflow-hidden fixed">
 			<img src="@/assets/cow.png" alt="" class="right-0 absolute" />
 		</div>
