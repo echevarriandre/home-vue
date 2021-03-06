@@ -15,7 +15,8 @@
 		<main class="min-w-1/5">
 			<section id="search" class="text-center mb-6 min-w-3/4">
 				<div id="shell">
-					<span class="text-dracula-red">echevarria</span>
+					<span v-if="user" class="text-dracula-red">{{ user.username }}</span>
+					<span v-else class="text-dracula-red">guest</span>
 					<span class="text-dracula-purple"> ~/home</span>
 					<span class="text-dracula-green"> > </span>
 					<span class="text-dracula-foreground">ddg</span>
