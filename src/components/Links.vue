@@ -80,12 +80,12 @@ export default {
 				})
 		},
 		handleLinks(rawLinks) {
-			this.categories = []
+			let categories = []
 			let aux = {}
 			rawLinks.forEach((link) => {
 				// initialize categories
 				if (aux[link.type] === undefined) {
-					this.categories.push(link.type)
+					categories.push(link.type)
 					aux[link.type] = []
 				}
 
@@ -94,6 +94,7 @@ export default {
 
 			const sortedLinks = this.sort(aux)
 
+			this.categories = categories.sort()
 			this.links = sortedLinks
 		},
 		sort(links) {
