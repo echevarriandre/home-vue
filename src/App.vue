@@ -1,5 +1,5 @@
 <template>
-	<div v-if="user" class="z-10 fixed right-0 m-5">
+	<div v-if="user" class="fixed right-0 m-5">
 		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed" tabindex="-1">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" class="w-6 h-6" viewBox="0 0 20 20">
 				<g fill="none">
@@ -14,9 +14,26 @@
 		</button>
 	</div>
 
+	<div v-if="user" class="fixed left-0 m-5">
+		<button
+			@click="toggleNotes"
+			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed"
+			tabindex="-1"
+		>
+			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+				<path
+					fill-rule="evenodd"
+					d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+					clip-rule="evenodd"
+				></path>
+			</svg>
+		</button>
+	</div>
+
 	<div class="flex justify-center relative top-32 text-lg">
+		<div class="fixed bg-dracula-background top-0 h-32 w-full block sm:hidden" />
 		<main class="min-w-1/5">
-			<section id="search" class="text-center mb-6 min-w-3/4">
+			<section id="search" class="sticky top-20 bg-dracula-background pb-3 text-center mb-6 min-w-3/4">
 				<div id="shell">
 					<span v-if="user" class="text-dracula-red">{{ user.username }}</span>
 					<span v-else class="text-dracula-red">guest</span>
@@ -67,7 +84,7 @@
 		</div>
 	</transition>
 
-	<Settings v-show="showModal" @close="toggleAll" @refresh="needsToUpdate = true" />
+	<Settings v-show="showAllModal" @close="toggleAll" @refresh="needsToUpdate = true" />
 </template>
 
 <script>
@@ -90,7 +107,8 @@ export default {
 			user: null,
 			links: [],
 			secret: false,
-			showModal: false,
+			showAllModal: false,
+			showNotesModal: false,
 			emptyError: false,
 			needsToUpdate: false,
 		}
@@ -115,7 +133,7 @@ export default {
 						AuthService.logout()
 						this.user = null
 						this.secret = false
-						this.showModal = false
+						this.showAllModal = false
 						this.emptyError = false
 						this.links = []
 					}
@@ -131,15 +149,11 @@ export default {
 		},
 
 		toggleAll() {
-			this.showModal = !this.showModal
-			document.body.classList.toggle('modal-open')
+			this.showAllModal = !this.showAllModal
+		},
+		toggleNotes() {
+			this.showNotesModal = !this.showNotesModal
 		},
 	},
 }
 </script>
-
-<style>
-.modal-open {
-	overflow: hidden;
-}
-</style>

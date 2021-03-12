@@ -1,10 +1,10 @@
 <template>
-	<div @click.self="close" class="fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start">
+	<div @click.self="close" class="z-10 fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start">
 		<div
-			class="z-10 w-full md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink"
+			class="md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink"
 		>
 			<div class="rounded flex flex-col">
-				<div class="relative top-0 py-2 px-4 text-right flex justify-between">
+				<section id="modal-navbar" class="relative top-0 py-2 px-4 text-right flex justify-between">
 					<div class="flex space-x-2">
 						<button
 							v-if="!editing && !creating"
@@ -92,7 +92,7 @@
 							</g>
 						</svg>
 					</button>
-				</div>
+				</section>
 				<section class="flex justify-center flex-col">
 					<transition name="fade" mode="out-in">
 						<LinkEdit v-if="editing || creating" :link="selectedLink" @complete="back" />

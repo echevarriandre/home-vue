@@ -1,5 +1,5 @@
 <template>
-	<section id="links-container" class="flex-col text-center sm:text-left flex items-center sm:items-start sm:flex-row">
+	<section id="links-container" class="flex-col justify-center text-center sm:text-left flex flex-wrap items-center sm:items-start sm:flex-row">
 		<template v-if="links">
 			<div v-for="(category, i) in categories" :key="i" className="bg-dracula-currentline shadow py-2 px-5 m-3 h-full rounded">
 				<div>

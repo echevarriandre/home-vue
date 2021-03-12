@@ -1,5 +1,5 @@
 <template>
-	<div class="m-4 flex flex-col w-96" @keypress.enter="confirm">
+	<div class="m-4 flex flex-col w-64 sm:w-96" @keypress.enter="confirm">
 		<p v-if="isCreating" class="text-dracula-foreground px-2 text-center">Create</p>
 		<p v-else class="text-dracula-foreground px-2 text-center">Edit</p>
 		<div class="flex flex-col">
