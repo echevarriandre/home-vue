@@ -1,33 +1,45 @@
 <template>
-	<div v-if="user" class="fixed right-0 m-5">
-		<button @click="toggleAll" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed" tabindex="-1">
-			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" class="w-6 h-6" viewBox="0 0 20 20">
-				<g fill="none">
-					<path d="M5 4a1 1 0 0 0-2 0v7.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-1.268a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
-					<path d="M11 4a1 1 0 1 0-2 0v1.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0V8.732a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
-					<path
-						d="M16 3a1 1 0 0 1 1 1v7.268a2 2 0 0 1 0 3.464V16a1 1 0 1 1-2 0v-1.268a2 2 0 0 1 0-3.464V4a1 1 0 0 1 1-1z"
-						fill="currentColor"
-					></path>
-				</g>
-			</svg>
-		</button>
-	</div>
+	<div v-if="user" id="settings" class="z-10 fixed right-0 m-5">
+		<div class="z-10">
+			<button
+				@click="toggleAll"
+				class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed"
+				tabindex="-1"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					xmlns:xlink="http://www.w3.org/1999/xlink"
+					aria-hidden="true"
+					class="w-6 h-6"
+					viewBox="0 0 20 20"
+				>
+					<g fill="none">
+						<path d="M5 4a1 1 0 0 0-2 0v7.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0v-1.268a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
+						<path d="M11 4a1 1 0 1 0-2 0v1.268a2 2 0 0 0 0 3.464V16a1 1 0 1 0 2 0V8.732a2 2 0 0 0 0-3.464V4z" fill="currentColor"></path>
+						<path
+							d="M16 3a1 1 0 0 1 1 1v7.268a2 2 0 0 1 0 3.464V16a1 1 0 1 1-2 0v-1.268a2 2 0 0 1 0-3.464V4a1 1 0 0 1 1-1z"
+							fill="currentColor"
+						></path>
+					</g>
+				</svg>
+			</button>
+		</div>
 
-	<div v-if="user" class="fixed left-0 m-5">
-		<button
-			@click="toggleNotes"
-			class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed"
-			tabindex="-1"
-		>
-			<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-				<path
-					fill-rule="evenodd"
-					d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
-					clip-rule="evenodd"
-				></path>
-			</svg>
-		</button>
+		<div class="z-10">
+			<button
+				@click="toggleNotes"
+				class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline-pink-dashed"
+				tabindex="-1"
+			>
+				<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+					<path
+						fill-rule="evenodd"
+						d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+						clip-rule="evenodd"
+					></path>
+				</svg>
+			</button>
+		</div>
 	</div>
 
 	<div class="flex justify-center relative top-32 text-lg">
