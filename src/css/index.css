@@ -30,7 +30,7 @@
 }
 
 .caret-input {
-	caret-color: #71809600;
+	caret-color: #ffffff;
 }
 
 body {
@@ -61,7 +61,7 @@ body {
 
 .fade-enter-active,
 .fade-leave-active {
-	transition: all .2s ease-out;
+	transition: all 0.2s ease-out;
 }
 .fade-enter,
 .fade-leave-to {
