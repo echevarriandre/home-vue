@@ -1,3 +1,17 @@
 # Home
 
-Got tired of react, switched to vue...
+Personal bookmark website
+
+## Commands
+
+Development
+
+```
+npm run dev
+```
+
+Build
+
+```
+npm run build
+```
