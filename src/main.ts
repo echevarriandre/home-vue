@@ -4,7 +4,7 @@ import { createApp } from "vue";
 import { User } from "./@types";
 import App from "./App.vue";
 import "./assets/base.css";
-import { homeApi } from "./interceptor";
+import { homeApi } from "./axios.config";
 import router from "./router";
 import { routeNames } from "./router/routes";
 import { useAuthStore } from "./stores/auth";

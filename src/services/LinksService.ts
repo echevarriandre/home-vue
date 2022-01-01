@@ -1,5 +1,5 @@
 import { Link, LinkDto } from "@/@types";
-import { homeApi } from "../interceptor";
+import { homeApi } from "../axios.config";
 
 const API_LINKS_PATH = `/links/`;
 

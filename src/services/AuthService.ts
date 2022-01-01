@@ -1,5 +1,5 @@
 import { LoginCredentials, User } from "@/@types";
-import { homeApi } from "@/interceptor";
+import { homeApi } from "@/axios.config";
 
 const API_AUTH_URL = "/login";
 
