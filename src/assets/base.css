@@ -54,17 +54,3 @@ body {
   @apply text-white;
   @apply bg-dracula-red;
 }
-
-.easter-enter-from,
-.easter-leave-to {
-  transform: translateX(100%);
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 0.2s ease-out;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}

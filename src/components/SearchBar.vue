@@ -21,12 +21,6 @@
       </button>
     </div>
   </section>
-
-  <transition name="easter" mode="out-in">
-    <div v-show="secret" class="top-0 h-screen w-screen duration-500 overflow-hidden fixed" @click="secret = false">
-      <img src="@/assets/cow.png" alt="" class="right-0 absolute" />
-    </div>
-  </transition>
 </template>
 
 <script setup lang="ts">
@@ -42,7 +36,6 @@ const linksStore = useLinksStore();
 
 const search = ref<string>("");
 const emptyError = ref<boolean>(false);
-const secret = ref<boolean>(false);
 
 function shell() {
   if (search.value.length <= 0) {
@@ -57,15 +50,10 @@ function shell() {
     case "logout":
       if (authStore.token) {
         authStore.logout();
-        secret.value = false;
         emptyError.value = false;
         linksStore.links = [];
         router.push({ name: routeNames.login });
       }
-      search.value = "";
-      break;
-    case "porn":
-      secret.value = !secret.value;
       search.value = "";
       break;
     default:
