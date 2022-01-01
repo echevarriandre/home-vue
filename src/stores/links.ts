@@ -53,6 +53,8 @@ export const useLinksStore = defineStore({
   getters: {
     getCategories: (state): string[] => {
       const categories: string[] = [];
+      if (!state.links) return [];
+
       state.links.forEach((l) => {
         if (!categories.includes(l.type)) {
           categories.push(l.type);
@@ -63,6 +65,7 @@ export const useLinksStore = defineStore({
     },
     getSortedLinksByCategory: (state): Record<string, Link[]> => {
       const links: Record<string, Link[]> = {};
+      if (!state.links) return links;
 
       state.links.forEach((l) => {
         if (links[l.type] === undefined) {

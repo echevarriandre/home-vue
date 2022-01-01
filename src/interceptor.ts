@@ -1,5 +1,5 @@
 import { User } from "@/@types";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const homeApi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -16,6 +16,20 @@ homeApi.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
+  },
+);
+
+homeApi.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error: AxiosError) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("user");
+      window.location.href = "login";
+    }
+
+    return error;
   },
 );
 
