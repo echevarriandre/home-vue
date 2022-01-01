@@ -33,12 +33,13 @@ homeApi.interceptors.response.use(
     return response;
   },
   (error: AxiosError) => {
-    if (error.response?.status === 401) {
-      useAuthStore().logout();
+    const authStore = useAuthStore();
+    if (error.response?.status === 401 && authStore.token) {
+      authStore.logout();
       router.push({ name: routeNames.login });
     }
 
-    return error;
+    return Promise.reject(error);
   },
 );
 
