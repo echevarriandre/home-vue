@@ -1,9 +1,12 @@
+import { AxiosError } from "axios";
 import { createPinia } from "pinia";
 import { createApp } from "vue";
 import { User } from "./@types";
 import App from "./App.vue";
 import "./assets/base.css";
+import { homeApi } from "./interceptor";
 import router from "./router";
+import { routeNames } from "./router/routes";
 import { useAuthStore } from "./stores/auth";
 
 const app = createApp(App);
@@ -24,5 +27,19 @@ if (window.localStorage) {
     }
   }
 }
+
+homeApi.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error: AxiosError) => {
+    if (error.response?.status === 401) {
+      useAuthStore().logout();
+      router.push({ name: routeNames.login });
+    }
+
+    return error;
+  },
+);
 
 app.mount("#app");
