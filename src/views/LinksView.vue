@@ -7,7 +7,7 @@
           <span className="text-dracula-green"> ></span>
         </div>
         <div className="pb-2">
-          <div v-for="link in linksStore.getSortedLinksByCategory[category]" :key="link.id">
+          <div v-for="link in sortLinks(category)" :key="link.id">
             <a :href="link.url" class="text-gray-600 hover:text-dracula-yellow transition duration-300 cursor-pointer">
               {{ link.name }}
             </a>
@@ -46,8 +46,13 @@
 </template>
 
 <script setup lang="ts">
+import { Link } from "@/@types";
 import { useLinksStore } from "@/stores/links";
 
 const linksStore = useLinksStore();
 linksStore.get();
+
+function sortLinks(category: string): Link[] {
+  return linksStore.getSortedLinksByCategory[category].sort((a, b) => (a.name > b.name ? 1 : 0));
+}
 </script>
