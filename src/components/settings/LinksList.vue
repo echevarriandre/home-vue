@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody class="text-dracula-comment">
-        <tr v-for="link in linksStore.links" :key="link.id" class="transition duration-300">
+        <tr v-for="link in linksStore.links.sort((a, b) => (a.name > b.name ? 1 : 0))" :key="link.id" class="transition duration-300">
           <td class="px-5 py-1 text-sm">
             <div class="flex items-center">
               <span class="whitespace-no-wrap">
