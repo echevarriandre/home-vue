@@ -1,6 +1,6 @@
 <template>
   <div class="z-10 fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start" @click.self="close">
-    <div class="md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
+    <div class="h-[70%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
       <div class="rounded flex flex-col min-w-[200px]">
         <section id="modal-navbar" class="relative top-0 py-2 px-4 text-right flex justify-between">
           <div class="flex space-x-2">
