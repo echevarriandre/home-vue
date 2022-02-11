@@ -38,11 +38,17 @@
 <script setup lang="ts">
 import { routeNames } from "@/router/routes";
 import { useAuthStore } from "@/stores/auth";
+import { useShellStore } from "@/stores/shell";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const authStore = useAuthStore();
+
+// Setup shell
+const shellStore = useShellStore();
+shellStore.user = "guest";
+shellStore.path = "~/login";
 
 const username = ref<string>("");
 const password = ref<string>("");

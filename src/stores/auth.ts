@@ -2,6 +2,7 @@ import { User } from "@/@types";
 import AuthService from "@/services/AuthService";
 import { AxiosError } from "axios";
 import { defineStore } from "pinia";
+import { useShellStore } from "./shell";
 
 export const useAuthStore = defineStore({
   id: "auth",
@@ -25,6 +26,8 @@ export const useAuthStore = defineStore({
             username: this.username,
             token: this.token,
           };
+
+          useShellStore().user = this.username;
 
           localStorage.setItem("user", JSON.stringify(user));
         })

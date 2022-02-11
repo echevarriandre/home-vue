@@ -1,12 +1,6 @@
 <template>
   <section id="search" class="sticky top-20 bg-dracula-background pb-3 text-center mb-6 min-w-[75%]">
-    <div id="shell">
-      <span v-if="authStore.token" class="text-dracula-red">{{ authStore.username }}</span>
-      <span v-else class="text-dracula-red">guest</span>
-      <span class="text-dracula-purple"> ~/home</span>
-      <span class="text-dracula-green"> > </span>
-      <span class="text-dracula-foreground">ddg</span>
-    </div>
+    <shell-pwd />
 
     <div :class="{ 'bg-dracula-red': emptyError }" class="mt-4 w-full sm:w-[500px] bg-dracula-currentline transition duration-300 shadow flex m-auto justify-center rounded focus-within:outline focus-within:outline-dracula-pink">
       <input v-model="search" autofocus type="text" autocomplete="off" class="caret-input w-5/6 p-2 text-dracula-foreground bg-transparent focus:outline-none" @keypress.enter="shell" />
@@ -24,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import ShellPwd from "./ShellPwd.vue";
 import { routeNames } from "@/router/routes";
 import { useAuthStore } from "@/stores/auth";
 import { useLinksStore } from "@/stores/links";

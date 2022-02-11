@@ -50,6 +50,10 @@
 <script setup lang="ts">
 import { Link } from "@/@types";
 import { useLinksStore } from "@/stores/links";
+import { useShellStore } from "@/stores/shell";
+
+const shellStore = useShellStore();
+shellStore.path = "~/home";
 
 const linksStore = useLinksStore();
 linksStore.get();

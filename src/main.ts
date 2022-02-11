@@ -39,6 +39,10 @@ homeApi.interceptors.response.use(
       router.push({ name: routeNames.login });
     }
 
+    if (error.response?.status === 500) {
+      router.push({ name: routeNames.error, params: { error: 500 } });
+    }
+
     return Promise.reject(error);
   },
 );
