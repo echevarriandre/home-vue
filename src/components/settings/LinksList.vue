@@ -44,17 +44,15 @@
 import { Link } from "@/@types";
 import { useLinksStore } from "@/stores/links";
 import { PencilIcon, TrashIcon } from "@heroicons/vue/solid";
-import { ref, toRef, watch } from "vue";
+import { computed } from "vue";
 
 const props = defineProps<{ search: string }>();
-const search = toRef(props, "search");
 
 const emit = defineEmits(["edit"]);
 const linksStore = useLinksStore();
-const filteredLinks = ref<Link[]>(linksStore.links);
 
-watch(search, (value) => {
-  filteredLinks.value = linksStore.links.filter((l) => l.name.includes(value));
+const filteredLinks = computed(() => {
+  return linksStore.links.filter((l) => l.name.includes(props.search));
 });
 
 function edit(link: Link) {

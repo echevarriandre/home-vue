@@ -1,6 +1,6 @@
 <template>
   <div class="z-10 fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start" @click.self="close">
-    <div class="max-h-[70%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
+    <div class="max-h-[72%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
       <div class="rounded flex flex-col min-w-[200px]">
         <section id="modal-navbar" class="relative top-0 py-2 px-4 text-right flex justify-between items-center">
           <div class="flex space-x-2">
@@ -12,7 +12,7 @@
             </button>
           </div>
           <div class="flex gap-5 items-center">
-            <input v-model="search" type="text" class="px-3 py-1 text-white bg-dracula-background border-2 border-transparent hover:border-dracula-currentline rounded-md" placeholder="search" />
+            <input v-model="search" type="text" class="px-3 py-1 text-white bg-dracula-currentline rounded-md transition duration-300 focus:outline focus:outline-dracula-pink" />
             <button v-if="!editing" class="text-dracula-orange hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="create">
               <PlusSmIcon class="w-5 h-5" />
             </button>
