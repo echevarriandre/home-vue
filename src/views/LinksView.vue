@@ -1,7 +1,7 @@
 <template>
-  <section id="links-container" class="flex-col justify-center text-center sm:text-left flex flex-wrap items-center sm:items-start sm:flex-row">
+  <section id="links-container" class="gap-3 text-center md:text-left columns-1 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5">
     <template v-if="!linksStore.fetching">
-      <div v-for="(category, i) in linksStore.getCategories" :key="i" className="w-full sm:w-auto bg-dracula-currentline shadow py-2 px-5 mb-3 sm:m-3 h-full rounded">
+      <div v-for="(category, i) in linksStore.getCategories" :key="i" className="mb-3 break-after-avoid break-before-avoid break-inside-avoid w-full sm:w-auto bg-dracula-currentline shadow py-2 px-5 h-full rounded">
         <div>
           <span className="text-dracula-purple">~/{{ category }}</span>
           <span className="text-dracula-green"> ></span>
