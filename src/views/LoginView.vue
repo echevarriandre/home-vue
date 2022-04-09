@@ -25,11 +25,7 @@
         class="group m-auto flex justify-center shadow mt-7 focus:outline focus:outline-2 focus:outline-dracula-pink bg-dracula-currentline hover:bg-dracula-yellow transition duration-300 w-3/4 text-dracula-foreground rounded p-2"
         @click="login"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-currentline transition duration-300" viewBox="0 0 20 20">
-          <g fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M16.707 5.293a1 1 0 0 1 0 1.414l-8 8a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 12.586l7.293-7.293a1 1 0 0 1 1.414 0z" fill="currentColor"></path>
-          </g>
-        </svg>
+        <CheckIcon class="w-5 h-5 text-dracula-foreground group-hover:text-dracula-currentline transition duration-300" />
       </button>
     </form>
   </section>
@@ -39,6 +35,7 @@
 import { routeNames } from "@/router/routes";
 import { useAuthStore } from "@/stores/auth";
 import { useShellStore } from "@/stores/shell";
+import { CheckIcon } from "@heroicons/vue/solid";
 import { ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
