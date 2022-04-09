@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody class="text-dracula-comment">
-        <tr v-for="link in filteredLinks.sort((a, b) => (a.name > b.name ? 1 : 0))" :key="link.id" class="transition duration-300">
+        <tr v-for="link in linksStore.filterLinksByValue(props.search).sort((a, b) => (a.name > b.name ? 1 : 0))" :key="link.id" class="transition duration-300">
           <td class="px-5 py-1 text-sm">
             <div class="flex items-center">
               <span class="whitespace-no-wrap">
@@ -37,6 +37,7 @@
         </tr>
       </tbody>
     </table>
+    <p v-if="linksStore.filterLinksByValue(props.search).length == 0" class="py-3 text-center text-dracula-foreground">No results found</p>
   </div>
 </template>
 
@@ -44,16 +45,11 @@
 import { Link } from "@/@types";
 import { useLinksStore } from "@/stores/links";
 import { PencilIcon, TrashIcon } from "@heroicons/vue/solid";
-import { computed } from "vue";
 
 const props = defineProps<{ search: string }>();
 
 const emit = defineEmits(["edit"]);
 const linksStore = useLinksStore();
-
-const filteredLinks = computed(() => {
-  return linksStore.links.filter((l) => l.name.includes(props.search));
-});
 
 function edit(link: Link) {
   emit("edit", link);

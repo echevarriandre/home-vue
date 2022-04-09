@@ -1,10 +1,10 @@
 <template>
   <div class="z-10 fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start" @click.self="close">
-    <div class="max-h-[72%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
+    <div class="outline outline-dracula-currentline max-h-[72%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
       <div class="rounded flex flex-col min-w-[200px]">
         <section id="modal-navbar" class="relative top-0 py-2 px-4 text-right flex justify-between items-center">
           <div class="flex space-x-2">
-            <button v-if="!editing" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="close">
+            <button v-if="!editing" class="text-dracula-red mr-5 hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="close">
               <XIcon class="w-5 h-5" />
             </button>
             <button v-else class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="back">

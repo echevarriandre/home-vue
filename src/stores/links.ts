@@ -77,5 +77,9 @@ export const useLinksStore = defineStore({
 
       return links;
     },
+    filterLinksByValue:
+      (state) =>
+      (searchValue: string): Link[] =>
+        state.links.filter((l) => l.name.includes(searchValue)),
   },
 });
