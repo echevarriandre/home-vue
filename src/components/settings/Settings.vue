@@ -1,8 +1,8 @@
 <template>
   <div class="z-10 fixed h-screen w-screen top-0 bg-black bg-opacity-30 flex justify-center items-start" @click.self="close">
-    <div class="h-[70%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
+    <div class="max-h-[70%] md:w-auto m-2 max-h-3/4 top-20 relative bg-dracula-background overflow-y-auto rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-dracula-pink">
       <div class="rounded flex flex-col min-w-[200px]">
-        <section id="modal-navbar" class="relative top-0 py-2 px-4 text-right flex justify-between">
+        <section id="modal-navbar" class="relative top-0 py-2 px-4 text-right flex justify-between items-center">
           <div class="flex space-x-2">
             <button v-if="!editing" class="text-dracula-red hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="close">
               <XIcon class="w-5 h-5" />
@@ -11,15 +11,18 @@
               <ArrowSmLeftIcon class="w-5 h-5" />
             </button>
           </div>
-          <button v-if="!editing" class="text-dracula-orange hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="create">
-            <PlusSmIcon class="w-5 h-5" />
-          </button>
+          <div class="flex gap-5 items-center">
+            <input v-model="search" type="text" class="px-3 py-1 text-white bg-dracula-background border-2 border-transparent hover:border-dracula-currentline rounded-md" placeholder="search" />
+            <button v-if="!editing" class="text-dracula-orange hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="create">
+              <PlusSmIcon class="w-5 h-5" />
+            </button>
+          </div>
         </section>
         <section class="flex justify-center flex-col">
           <transition name="fade" mode="out-in">
             <LinkEdit v-if="editing" :link="selectedLink" @complete="back" />
             <p v-else-if="linkStore.links.length === 0" class="text-white text-center p-2">No links were found</p>
-            <LinksList v-else @edit="edit" />
+            <LinksList v-else :search="search" @edit="edit" />
           </transition>
         </section>
       </div>
@@ -37,6 +40,7 @@ import LinksList from "./LinksList.vue";
 
 const emit = defineEmits(["close"]);
 const linkStore = useLinksStore();
+const search = ref("");
 const editing = ref(false);
 const selectedLink = ref<Link>();
 
