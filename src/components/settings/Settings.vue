@@ -12,7 +12,7 @@
             </button>
           </div>
           <div class="flex gap-5 items-center">
-            <input v-model="search" type="text" class="px-3 py-1 text-white bg-dracula-currentline rounded-md transition duration-300 focus:outline focus:outline-dracula-pink" />
+            <input v-if="!editing" v-model="search" type="text" class="px-3 py-1 text-white bg-dracula-currentline rounded-md transition duration-300 focus:outline focus:outline-dracula-pink" />
             <button v-if="!editing" class="text-dracula-orange hover:text-dracula-yellow transition duration-300 focus:outline focus:outline-dracula-pink rounded flex justify-center" @click="create">
               <PlusSmIcon class="w-5 h-5" />
             </button>
